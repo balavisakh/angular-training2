@@ -42,6 +42,18 @@ export class LoginComponent implements OnInit {
       return;
     }
     else {
+    //  const findUser = data.users.find(this.isUser).email;
+      // data.users.find((values)=>{
+      //   if (values.email === this.loginFormGroup.value.email && values.password === this.loginFormGroup.value.password) {
+      //     console.log("equal");
+      //     localStorage.setItem("username",values.username);
+      //     localStorage.setItem("email",values.email);
+      //     this.role = localStorage.setItem('role', '1');
+      //     this.router.navigate(['search']);
+      //     return;
+      //   }
+      // }
+      // )
     // console.log(this.loginFormGroup.value);
       for(let i =0; i< data.users.length; i++) {
         if (data.users[i].email === this.loginFormGroup.value.email && data.users[i].password === this.loginFormGroup.value.password) {
@@ -52,12 +64,18 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['search']);
           return;
         }
-      }      
+    }
     console.log("not equal");
         localStorage.clear();
         alert("user name or password is wrong");
         return;
-    }
   }
-  }
+   
+  // isUser(users) {
+  //   console.log("equal");
+  //       return users.email === this.loginFormGroup.value.email;
+
+  // }
+}
+}
 

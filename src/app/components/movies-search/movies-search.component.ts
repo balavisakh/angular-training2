@@ -45,7 +45,7 @@ export class MoviesSearchComponent implements OnInit {
   searchMovies(searchText:any) {
     // const searchText = evt.target.value;
     console.log(searchText,"serachtext");
-    this.moviesService.getMovies(searchText).pipe(debounceTime(1000)).subscribe((value)=>{
+    this.moviesService.getMovies(searchText).subscribe((value)=>{
       console.log(value,"srch res");
       this.movies = value;
       if(this.movies?.Search?.length) {
