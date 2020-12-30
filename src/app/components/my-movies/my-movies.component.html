@@ -1,0 +1,6 @@
+<app-header></app-header>
+<mat-card *ngFor="let selectedMovieList of selectedMovieLists">
+    <img src="{{selectedMovieList.Poster}}" alt="poster"><br>
+    <b>Title :</b> {{selectedMovieList.Title}}<br>
+    <b>Year :</b> {{selectedMovieList.Year}}<br>
+</mat-card>

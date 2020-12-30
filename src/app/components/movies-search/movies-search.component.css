@@ -1,0 +1,12 @@
+table {
+    width: 100%;
+    margin: auto;
+}
+
+.posterImg {
+    width: 30px;
+}
+
+mat-form-field {
+    width: 30%;
+}

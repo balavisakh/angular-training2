@@ -1,0 +1,47 @@
+<app-header></app-header>
+<div class="my-account-container">
+    <mat-card class="my-account-card">
+        <div class="example-container" [formGroup] = "myAccountFormGroup">
+            <h1 class="create-account-heading">Create Account</h1>
+            <mat-form-field appearance="fill">
+                <mat-label>First Name</mat-label>
+                <input matInput formControlName="firstName">
+                <mat-error *ngIf="firstName.invalid">{{getErrorFirstNameMessage()}}</mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="fill">
+                <mat-label>Last Name</mat-label>
+                <input matInput formControlName="lastName">
+                <mat-error *ngIf="firstName.invalid">{{getErrorLastNameMessage()}}</mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="fill">
+                <mat-label>Choose date of birth</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="dateOfBirth">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="fill">
+                <mat-label>Address</mat-label>
+                <textarea matInput formControlName="Address"></textarea>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline">
+                <input 
+                  matInput 
+                  ng2TelInput 
+                  [ng2TelInputOptions]="{initialCountry: 'in'}"
+                  formControlName="mobile"
+                  />
+                  <mat-error *ngIf="firstName.invalid">{{getErrorMobileMessage()}}</mat-error>
+              </mat-form-field>
+              <mat-select-country formControlName="country" appearance="fill"> 
+              </mat-select-country>
+              <mat-error *ngIf="firstName.invalid">{{getErrorCountryMessage()}}</mat-error>
+              <div class="submitBtn">
+                <button (click)= onSubmit() class="matSubmitBtn" mat-raised-button>Submit</button>
+              </div>
+        </div>
+    </mat-card>
+</div>
