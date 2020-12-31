@@ -13,7 +13,6 @@ import {Router} from '@angular/router';
   styleUrls: ['./movies-search.component.css']
 })
 export class MoviesSearchComponent implements OnInit {
-  name = [{name:"bala"}];
   movies:any = [];
   displayedColumns: string[] = ['select','poster','title','name'];
   dataSource = new MatTableDataSource();
@@ -32,6 +31,7 @@ export class MoviesSearchComponent implements OnInit {
       map(searchText => this.searchMovies(searchText))
     )
   this.results$.subscribe();
+  // this.sendVal();
 }
 
   ngAfterViewInit(): void {
@@ -66,9 +66,9 @@ export class MoviesSearchComponent implements OnInit {
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
     const numSelected = this.selection.selected.length;
-    this.selectedRows = this.selection.selected;
+    // this.selectedRows = this.selection.selected;
     // console.log(this.selectedRows,"selected rows");
-    this.sendVal();
+    // this.sendVal();
     const numRows = this.dataSource.data.length;
     return numSelected === numRows;
   }
@@ -97,7 +97,20 @@ export class MoviesSearchComponent implements OnInit {
     this.moviesService.sendData(this.selectedRows);
   }
 
-  iamSelected(row) {
-    console.log(row,"selected");
+  selectRow($event, dataSource) {
+    // console.log($event.checked);
+    if ($event.checked) {
+      console.log(dataSource,"source");
+      this.selectedRows.push(dataSource);
+      this.sendVal();
+    }
   }
+
+  selectAllRow($event) {
+    if ($event.checked) {
+    console.log($event.checked, this.selection.selected);
+    this.selectedRows = this.selection.selected;
+    this.sendVal();
+  }
+}
 }

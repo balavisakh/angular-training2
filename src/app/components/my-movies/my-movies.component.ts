@@ -7,7 +7,7 @@ import {Subscription} from 'rxjs';
   styleUrls: ['./my-movies.component.css']
 })
 export class MyMoviesComponent implements OnInit {
-  selectedMovieLists:any = [];
+  selectedMovieLists = [];
   subscription: Subscription;
   constructor(private moviesService: MoviesService) { }
 
@@ -24,8 +24,8 @@ export class MyMoviesComponent implements OnInit {
   }
 
   getData() {
-    this.selectedMovieLists = this.moviesService.getData();
-    console.log(this.moviesService.getData(),"data");
+    let data = this.selectedMovieLists = this.moviesService.getData();
+    console.log(data,"data");
   }
 
   ngOnDestroy(): void {

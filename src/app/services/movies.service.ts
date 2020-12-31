@@ -9,7 +9,7 @@ import { debounceTime, map } from 'rxjs/operators';
 export class MoviesService {
   api_url = "http://www.omdbapi.com/?i=tt3896198&apikey=c7256108&s=";
   public bSubject = new BehaviorSubject('');
-  share;
+  share = [];
   constructor(private http: HttpClient) { }
 
   getMovies(searchInput): Observable<any> {
