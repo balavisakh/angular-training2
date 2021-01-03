@@ -7,8 +7,9 @@ import {Subscription} from 'rxjs';
   styleUrls: ['./my-movies.component.css']
 })
 export class MyMoviesComponent implements OnInit {
-  selectedMovieLists = [];
+  selectedMovieList = [];
   subscription: Subscription;
+  movieIds = [];
   constructor(private moviesService: MoviesService) { }
 
   ngOnInit(): void {
@@ -18,18 +19,25 @@ export class MyMoviesComponent implements OnInit {
 
   getSelectedMovies() {
     this.subscription = this.moviesService.getValue().subscribe((selectedMovies)=>{
-      this.selectedMovieLists = selectedMovies;
-      console.log(this.selectedMovieLists,"selectedMovies");
+      this.selectedMovieList = selectedMovies;
+      console.log(this.selectedMovieList,"selectedMovies");
     })
   }
 
   getData() {
-    let data = this.selectedMovieLists = this.moviesService.getData();
-    console.log(data,"data");
+    this.selectedMovieList = this.moviesService.getData();
   }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
 
+  deleteMovie(movieId) {
+    for(let i=0; i< this.selectedMovieList.length; i++) {
+      if( this.selectedMovieList[i].imdbID === movieId) {
+        this.selectedMovieList.splice(i,1);
+        break;
+      }
+    }
+  }
 }

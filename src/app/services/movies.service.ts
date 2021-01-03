@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject, BehaviorSubject } from 'rxjs';
+import { Observable, Subject, BehaviorSubject, of } from 'rxjs';
 import { debounceTime, map } from 'rxjs/operators';
 
 @Injectable({
@@ -13,7 +13,12 @@ export class MoviesService {
   constructor(private http: HttpClient) { }
 
   getMovies(searchInput): Observable<any> {
-    return this.http.get(this.api_url+searchInput).pipe(debounceTime(1000));
+    return this.http.get(this.api_url+searchInput).pipe(debounceTime(1000),
+    map((res:any) => { 
+      
+      res =  res.Search?.map((response)=>{response['isChecked']=false; return response});
+      console.log(res);
+    return res; }))
   }
 
   sendValue(value:any) {
@@ -35,4 +40,5 @@ export class MoviesService {
   getData() {
     return this.share;
   }
+
 }

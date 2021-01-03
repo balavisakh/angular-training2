@@ -1,7 +1,11 @@
 <app-header></app-header>
-<mat-card *ngFor="let selectedMovieList of selectedMovieLists">
-    <img src="{{selectedMovieList.Poster}}" alt="poster"><br>
-    <b>Title :</b> {{selectedMovieList.Title}}<br>
-    <b>Year :</b> {{selectedMovieList.Year}}<br>
-</mat-card>
-<mat-card *ngIf="!selectedMovieLists?.length">Please select movies from search</mat-card>
+<ng-container *ngFor="let selectedMovie of selectedMovieList">
+
+    <mat-card *ngIf="selectedMovie.isChecked">
+        <img src="{{selectedMovie.Poster}}" alt="poster"><br>
+        <b>Title :</b> {{selectedMovie.Title}}<br>
+        <b>Year :</b> {{selectedMovie.Year}}<br>
+        <button (click)= "selectedMovie.isChecked = false" mat-stroked-button color="warn">Delete</button>
+    </mat-card>
+</ng-container>
+<mat-card *ngIf="!selectedMovieList?.length">Please select movies from search</mat-card>
